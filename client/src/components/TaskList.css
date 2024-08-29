@@ -1,0 +1,25 @@
+button {
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 2px 2px;
+    cursor: pointer;
+    border-radius: 6px;
+    background-color: grey;
+}
+
+button.delete-button {
+    background-color: red;
+}
+
+button.add-button {
+    background-color: blue;
+}
+
+button.save-button {
+    background-color: green;
+}

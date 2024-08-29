@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import './TaskList.css';
 
 
 const TaskList = () => {
@@ -73,7 +74,7 @@ const TaskList = () => {
                     placeholder="New Task"
                     required
                 />
-                <button type="submit">Add Task</button>
+                <button className='add-button' type="submit">Add Task</button>
             </form>
             {/* Edit task field */}
             {editTaskId && (
@@ -85,7 +86,7 @@ const TaskList = () => {
                         placeholder="Edit Task"
                         required
                     />
-                    <button type="submit">Save Changes</button>
+                    <button className='save-button' type="submit">Save Changes</button>
                     <button type="button" onClick={() => { setEditTaskId(null); setEditTaskTitle(''); }}>
                         Cancel
                     </button>
@@ -96,7 +97,7 @@ const TaskList = () => {
                     <li key={task._id}>
                     <Link to={`/tasks/${task._id}`}>{task.title}</Link>
                     <button onClick={() => handleEditClick(task)}>Edit</button>
-                    <button onClick={() => handleDelete(task._id)}>Delete</button>
+                    <button className="delete-button" onClick={() => handleDelete(task._id)}>Delete</button>
                     </li>
                 ))}
             </ul>
