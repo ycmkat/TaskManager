@@ -50,6 +50,15 @@ const TaskList = () => {
         }
     };
 
+    const handleDelete = async (id) => {
+        try {
+            await axios.delete(`http://localhost:5001/api/tasks/${id}`);
+            setTasks(tasks.filter(task => task._id !== id));
+        } catch (error) {
+            console.error(error.message);
+        }
+    };
+
     return (
         <div>
             <h1>Task List</h1>
@@ -84,6 +93,7 @@ const TaskList = () => {
                 {tasks.map((task) => (
                     <li key={task._id}>{task.title}
                     <button onClick={() => handleEditClick(task)}>Edit</button>
+                    <button onClick={() => handleDelete(task._id)}>Delete</button>
                     </li>
                 ))}
             </ul>
