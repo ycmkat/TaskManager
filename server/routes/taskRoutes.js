@@ -12,6 +12,17 @@ router.get('/', async (req, res) => {
     }
 });
 
+// GET /api/tasks/:id: Get a single task by id
+router.get('/:id', async (req, res) => {
+    try {
+        const task = await Task.findById(req.params.id);
+        if (!task) return res.status(404).json({ message: 'Task not found' });
+        res.status(200).json(task);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
 // POST /api/tasks: Create a new task
 router.post('/', async (req, res) => {
     // check if title is present
