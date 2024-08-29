@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // create schema for Task
-const Task = new mongoose.Schema({
+const taskSchema = new mongoose.Schema({
     // id and title
     /*
     id: {  // alternatively, use default _id field from mongoose
@@ -12,8 +12,9 @@ const Task = new mongoose.Schema({
     */
     title: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     }
 });
 
-module.exports = mongoose.model('Task', Task)
+module.exports = mongoose.model('Task', taskSchema)

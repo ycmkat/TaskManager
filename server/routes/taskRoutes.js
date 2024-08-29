@@ -14,6 +14,10 @@ router.get('/', async (req, res) => {
 
 // POST /api/tasks: Create a new task
 router.post('/', async (req, res) => {
+    // check if title is present
+    if (!req.body.title) {
+        return res.status(400).json({ message: "Title is required"});
+    }
     const task = new Task({
         title: req.body.title,
     });
@@ -21,7 +25,7 @@ router.post('/', async (req, res) => {
         const newTask = await task.save();
         res.status(201).json(newTask);
     } catch (err) {
-        res.status(400).json({ message: err.message});  // Bad request
+        res.status(500).json({ message: err.message}); 
     }
 });
 
