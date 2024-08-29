@@ -23,6 +23,21 @@ router.post('/api/tasks', async (req, res) => {
     } catch (err) {
         res.status(400).json({ message: err.message});  // Bad request
     }
-})
+});
+
+// PATCH /api/tasks/:id: Update an existing task
+router.patch('/api/task/:id', async (req, res) => {
+    try {
+        const task = await Task.findById(req.params.id);
+        if (!task) return res.status(404).json({message: 'Task not found'});
+        if (req.body.title != null) {
+            task.title = req.body.title;
+        }
+        const updatedTask = await task.save();
+        res.json(updatedTask);
+    } catch (err) {
+        res.status(400).json({message: err.message});
+    }
+});
 
 module.exports = router;
