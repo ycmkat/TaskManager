@@ -10,7 +10,7 @@ const TaskList = () => {
         // get all tasks
         const fetchTasks = async () => {
             try {
-                const response = await axios.get('/api/tasks');
+                const response = await axios.get('http://localhost:5001/api/tasks');
                 setTasks(response.data);
             } catch (error) {
                 console.error(error.message);
@@ -22,8 +22,9 @@ const TaskList = () => {
     // create form to add new tasks
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(newTask);
         try {
-            const response = await axios.post('/api/tasks', {title: newTask});
+            const response = await axios.post('http://localhost:5001/api/tasks', {title: newTask});
             setTasks([...tasks, response.data]);
             setNewTask('');
         } catch (error) {
