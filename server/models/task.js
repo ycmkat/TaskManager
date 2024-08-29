@@ -2,9 +2,10 @@ const mongoose = require('mongoose');
 
 // create schema for Task
 const taskSchema = new mongoose.Schema({
-    // id and title
     /*
-    id: {  // alternatively, use default _id field from mongoose
+    Note: We will be using the default _id field from mongoose.
+    Alternatively, we could define our own id field as follows:
+    id: {  
         type: String,
         required: true,
         unique: true  // primary key
