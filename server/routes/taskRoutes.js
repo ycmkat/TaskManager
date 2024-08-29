@@ -3,7 +3,7 @@ const router = express.Router();
 const Task = require('../models/task');
 
 // GET /api/tasks: Retrieve all tasks
-router.get('/api/tasks', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const tasks = await Task.find();
         res.status(200).json(tasks);
@@ -13,7 +13,7 @@ router.get('/api/tasks', async (req, res) => {
 });
 
 // POST /api/tasks: Create a new task
-router.post('/api/tasks', async (req, res) => {
+router.post('/', async (req, res) => {
     const task = new Task({
         title: req.body.title,
     });
@@ -26,7 +26,7 @@ router.post('/api/tasks', async (req, res) => {
 });
 
 // PATCH /api/tasks/:id: Update an existing task
-router.patch('/api/task/:id', async (req, res) => {
+router.patch('/:id', async (req, res) => {
     try {
         const task = await Task.findById(req.params.id);
         if (!task) return res.status(404).json({message: 'Task not found'});
@@ -41,7 +41,7 @@ router.patch('/api/task/:id', async (req, res) => {
 });
 
 // DELETE /api/tasks/:id: Delete an existing task
-router.delete('/api/task/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
         const task = await Task.findById(req.params.id);
         if (!task) return res.status(404).json({message: 'Task not found'});
