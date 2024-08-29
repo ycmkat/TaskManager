@@ -6,7 +6,7 @@ const Task = require('../models/task');
 router.get('/api/tasks', async (req, res) => {
     try {
         const tasks = await Task.find();
-        res.json(tasks);
+        res.status(200).json(tasks);
     } catch (err) {
         res.status(500).json({message: err.message});
     }
@@ -34,7 +34,7 @@ router.patch('/api/task/:id', async (req, res) => {
             task.title = req.body.title;
         }
         const updatedTask = await task.save();
-        res.json(updatedTask);
+        res.status(200).json(updatedTask);
     } catch (err) {
         res.status(400).json({message: err.message});
     }
